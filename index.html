@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="google-site-verification" content="Sl0n4C3x2qLiQsYJ7VNklHP6w9qTN6Suc8Q0-6FbevQ">
+  <meta name="description" content="مُعين مساحة عربية للمبرمجين: مهام، قصاصات كود، ملاحظات، أدوات برمجية واستوديو ملفات.">
+  <meta name="keywords" content="مُعين, mueen, أدوات برمجية, قصاصات كود, مهام, ملاحظات, مبرمج عربي">
+  <link rel="canonical" href="https://mueen-app.duckdns.org/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"مُعين","alternateName":"Mueen","applicationCategory":"DeveloperApplication","operatingSystem":"Web","inLanguage":"ar","url":"https://mueen-app.duckdns.org/","description":"مساحة عربية للمبرمجين لإدارة المهام وحفظ الأكواد والملاحظات واستخدام الأدوات البرمجية."}</script>
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="مُعين | مساحة المبرمج">
+  <meta property="og:description" content="أنجز مهامك، احفظ أكوادك، وابدأ من قالب جاهز — في مكان واحد.">
+  <meta property="og:image" content="cover.jpg">
+  <title>مُعين | مساحة المبرمج</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f766e'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='34' fill='white' font-family='Tahoma'%3Eم%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    [hidden] { display: none !important; }
+    .command-palette[hidden],
+    .mueen-menu-overlay[hidden],
+    .status-banner[hidden] { display: none !important; pointer-events: none !important; }
+  </style>
+</head>
+
+<body>
+  <div class="mueen-menu-overlay" id="menuOverlay" hidden></div>
+  <div id="commandPalette" class="command-palette" hidden></div>
+  <div id="statusBanner" class="status-banner" hidden></div>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar" aria-label="القائمة الإضافية">
+      <div class="logo-area">
+        <div class="logo-icon" aria-hidden="true">م</div>
+        <div>
+          <strong>مُعين</strong>
+          <span>مساحة المبرمج</span>
+        </div>
+        <button class="header-icon-button sidebar-close" id="closeMenuButton" type="button" aria-label="إغلاق القائمة">×</button>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button id="themeButton" class="secondary-button" type="button">
+          <span aria-hidden="true">☼</span>
+          الوضع الداكن
+        </button>
+        <!-- ✅ إصلاح: تحديث الإصدار -->
+        <p class="version-text">مُعين v1.7 — محلي أولًا</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <button id="menuButton" class="mobile-menu-button" type="button" aria-label="فتح القائمة" aria-controls="sidebar" aria-expanded="false">
+          ☰
+        </button>
+
+        <div class="mobile-brand">
+          <div class="logo-icon small-logo" aria-hidden="true">م</div>
+          <strong>مُعين</strong>
+        </div>
+
+        <div class="header-spacer"></div>
+
+        <button id="guideButton" class="header-icon-button" type="button" data-page="guide" aria-label="دليل الموقع">?</button>
+        <button id="searchButton" class="header-icon-button" type="button" aria-label="بحث شامل">⌕</button>
+        <button id="commandButton" class="header-icon-button" type="button" aria-label="لوحة الأوامر">⌘</button>
+        <button id="mobileThemeButton" class="header-icon-button" type="button" aria-label="تغيير المظهر">☼</button>
+        <div class="user-avatar" id="headerAccount" aria-hidden="true">م</div>
+      </header>
+
+      <div class="page-container">
+        <section id="homePage" class="page active-page">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">مساحة المبرمج العربي</p>
+              <h1>مرحبًا بك في مُعين</h1>
+              <p class="page-description">أنجز العمل، احفظ الكود، وابدأ من قالب جاهز — من مكان واحد.</p>
+            </div>
+            <div class="date-card">
+              <span id="currentDay">اليوم</span>
+              <strong id="currentDate">--</strong>
+            </div>
+          </div>
+
+          <div class="cover-card">
+            <img src="cover.jpg" alt="مُعين: مهام وكود وملاحظات في مساحة واحدة" width="1176" height="784">
+            <div class="cover-caption">
+              <strong>الفكرة ببساطة</strong>
+              <p>ثلاث أدوات تعمل معًا: مهامك، مكتبتك البرمجية، وملاحظاتك — مربوطة بمشاريعك.</p>
+            </div>
+          </div>
+
+          <div class="hero-card" id="todayHero">
+            <div class="hero-content">
+              <span class="status-label" id="streakLabel">جاهز للإنجاز</span>
+              <h2 id="heroTitle">ماذا ستنجز اليوم؟</h2>
+              <p id="heroText">ابدأ بمهمة صغيرة، وسجّل تقدمك خطوة بخطوة.</p>
+              <div class="hero-actions" id="heroActions">
+                <button class="primary-button" type="button" data-page="tasks">
+                  ابدأ بإضافة مهمة <span aria-hidden="true">←</span>
+                </button>
+              </div>
+            </div>
+            <div class="hero-decoration" aria-hidden="true"><span>{</span><span>}</span></div>
+          </div>
+
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">لوحة اليوم</p>
+              <h2>ما الذي يستحق وقتك الآن؟</h2>
+            </div>
+          </div>
+          <div id="todayBoard" class="today-board"></div>
+
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">نظرة سريعة</p>
+              <h2>مساحتك اليوم</h2>
+            </div>
+          </div>
+          <div class="stats-grid stats-grid-4" id="homeStats">
+            <article class="stat-card"><div class="stat-icon green">✓</div><div><span>المهام المفتوحة</span><strong id="homeTasksCount">0</strong></div></article>
+            <article class="stat-card"><div class="stat-icon blue">{ }</div><div><span>قصاصات الكود</span><strong id="homeSnippetsCount">0</strong></div></article>
+            <article class="stat-card"><div class="stat-icon orange">▤</div><div><span>الملاحظات</span><strong id="homeNotesCount">0</strong></div></article>
+            <article class="stat-card"><div class="stat-icon purple">◷</div><div><span>أيام متتالية</span><strong id="homeStreakCount">0</strong></div></article>
+          </div>
+
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">اختصارات</p>
+              <h2>ابدأ بسرعة</h2>
+            </div>
+          </div>
+          <div class="quick-actions">
+            <button class="quick-action" type="button" data-page="tasks"><span class="quick-icon green">✓</span><span><strong>مهمة جديدة</strong><small>اختصار N</small></span><span class="arrow">←</span></button>
+            <button class="quick-action" type="button" data-page="snippets"><span class="quick-icon blue">{ }</span><span><strong>احفظ كودًا</strong><small>اختصار S</small></span><span class="arrow">←</span></button>
+            <button class="quick-action" type="button" data-page="focus"><span class="quick-icon orange">◷</span><span><strong>جلسة تركيز</strong><small>اختصار F</small></span><span class="arrow">←</span></button>
+          </div>
+        </section>
+
+        <section id="tasksPage" class="page">
+          <div class="page-heading simple-heading">
+            <div><p class="eyebrow">التنظيم</p><h1>المهام اليومية</h1><p class="page-description">تابع ما تريد إنجازه اليوم، أو ابدأ جلسة تركيز على مهمة.</p></div>
+            <button class="primary-button add-button" type="button"><span>+</span> مهمة جديدة</button>
+          </div>
+          <div class="filter-bar" aria-label="تصفية المهام">
+            <button class="filter-button active" type="button" data-filter="all">الكل</button>
+            <button class="filter-button" type="button" data-filter="open">مفتوحة</button>
+            <button class="filter-button" type="button" data-filter="done">مكتملة</button>
+            <button class="filter-button" type="button" data-filter="today">اليوم</button>
+          </div>
+          <div id="tasksList" class="empty-state"></div>
+        </section>
+
+        <section id="snippetsPage" class="page">
+          <div class="page-heading simple-heading">
+            <div><p class="eyebrow">مكتبتك البرمجية</p><h1>قصاصات الكود</h1><p class="page-description">احفظ أكوادك، ثبّتها، واربطها بمشروع.</p></div>
+            <div class="extra-page-actions">
+              <button class="small-action" id="pasteSnippetButton" type="button">لصق من الحافظة</button>
+              <button class="primary-button add-button" type="button"><span>+</span> قصاصة جديدة</button>
+            </div>
+          </div>
+          <div class="search-box"><span aria-hidden="true">⌕</span><input type="search" aria-label="البحث في قصاصات الكود" placeholder="ابحث عن كود أو لغة أو وسم..."></div>
+          <div class="filter-bar" id="snippetFilters" aria-label="تصفية القصاصات"></div>
+          <div id="snippetsList" class="empty-state"></div>
+        </section>
+
+        <section id="toolsPage" class="page">
+          <div class="page-heading simple-heading">
+            <div><p class="eyebrow">صندوق الأدوات</p><h1>أدوات برمجية</h1><p class="page-description">أدوات يومية واضحة، بدون تعقيد.</p></div>
+          </div>
+          <div class="tools-grid">
+            <button class="tool-card" type="button" data-tool="json"><span class="tool-icon green">{ }</span><strong>منسق JSON</strong><p>تنسيق وتصغير مع موضع الخطأ.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-tool="colors"><span class="tool-icon blue">◆</span><strong>مولد الألوان</strong><p>HEX وRGB ومتغيرات CSS.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-tool="compare"><span class="tool-icon purple">≠</span><strong>مقارنة النصوص</strong><p>إبراز الأسطر المختلفة.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-tool="base64"><span class="tool-icon orange">64</span><strong>Base64</strong><p>ترميز وفك ترميز النصوص.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-tool="count"><span class="tool-icon green">¶</span><strong>عداد النص</strong><p>أحرف، كلمات، وأسطر.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-tool="readme"><span class="tool-icon blue">☰</span><strong>مولد README</strong><p>ابدأ توثيق مشروعك.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-tool="gitignore"><span class="tool-icon orange">⊘</span><strong>مولد gitignore</strong><p>ملف تجاهل حسب نوع المشروع.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-page="convert"><span class="tool-icon green">{→}</span><strong>تحويل اللغات</strong><p>Python إلى JavaScript والعكس.</p><span class="tool-arrow">←</span></button>
+            <!-- ✅ إصلاح: بطاقة استوديو الملفات -->
+            <button class="tool-card" type="button" data-page="editor"><span class="tool-icon purple">▤</span><strong>استوديو الملفات</strong><p>استورد مجلدًا أو ZIP مع الصور، عاين، عدّل، وحمّل.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-page="guide"><span class="tool-icon blue">?</span><strong>دليل الموقع</strong><p>شرح الصفحات وجولة سريعة.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-tool="time"><span class="tool-icon purple">◷</span><strong>محوّل الوقت</strong><p>التاريخ المحلي وUTC.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="debug"><span class="tool-icon red">⚠</span><strong>مستكشف الأخطاء</strong><p>حلّل أخطاء JSON وJavaScript وHTML وCSS.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="api"><span class="tool-icon blue">⇄</span><strong>مختبر API</strong><p>اختبر طلبات HTTP وانسخ cURL أو JavaScript.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="builder"><span class="tool-icon green">▣</span><strong>منشئ صفحة HTML</strong><p>أنشئ صفحة هبوط جاهزة مع المعاينة.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="json-ts"><span class="tool-icon purple">TS</span><strong>JSON إلى TypeScript</strong><p>حوّل JSON إلى Interfaces بسرعة.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="image"><span class="tool-icon orange">▧</span><strong>مختبر الصور</strong><p>حلّل واضغط وحوّل الصور للويب.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="regex"><span class="tool-icon blue">.*</span><strong>مولد Regex</strong><p>أنشئ نمطًا واختبره على نص مباشر.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="time-pro"><span class="tool-icon purple">◷</span><strong>الوقت المتقدم</strong><p>Unix وUTC وISO والفرق بين تاريخين.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="site"><span class="tool-icon red">⌁</span><strong>فاحص الموقع</strong><p>افحص SEO وrobots وsitemap وHTTPS.</p><span class="tool-arrow">←</span></button>
+            <button class="tool-card" type="button" data-pro-tool="preview"><span class="tool-icon green">▶</span><strong>معاينة HTML</strong><p>اكتب HTML وCSS وشاهد النتيجة مباشرة.</p><span class="tool-arrow">←</span></button>
+          </div>
+        </section>
+
+        <section id="notesPage" class="page">
+          <div class="page-heading simple-heading">
+            <div><p class="eyebrow">أفكارك وملاحظاتك</p><h1>الملاحظات</h1><p class="page-description">اربط الفكرة بالمشروع كي لا تضيع.</p></div>
+            <button class="primary-button add-button" type="button"><span>+</span> ملاحظة جديدة</button>
+          </div>
+          <div class="search-box"><span aria-hidden="true">⌕</span><input type="search" aria-label="البحث في الملاحظات" placeholder="ابحث في ملاحظاتك..."></div>
+          <div id="notesList" class="empty-state"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="التنقل الأساسي">
+    <button class="mobile-nav-link active" type="button" data-page="home"><span>⌂</span><small>الرئيسية</small></button>
+    <button class="mobile-nav-link" type="button" data-page="tasks"><span>✓</span><small>المهام</small></button>
+    <button class="mobile-nav-link" type="button" data-page="snippets"><span>{ }</span><small>الأكواد</small></button>
+    <button class="mobile-nav-link" type="button" data-page="tools"><span>⚙</span><small>الأدوات</small></button>
+    <button class="mobile-nav-link" type="button" data-page="notes"><span>▤</span><small>ملاحظات</small></button>
+  </nav>
+
+  <script src="app.js"></script>
+  <script src="convert.js"></script>
+  <script src="templates-feature.js"></script>
+  <script src="guide.js"></script>
+  <script src="editor-studio.js"></script>
+  <script src="enhancements.js"></script>
+</body>
+</html>
